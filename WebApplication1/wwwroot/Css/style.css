@@ -1,0 +1,30 @@
+body {
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.content{
+  margin: 0 auto;
+  width: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.content-table{
+  text-align: center;
+  margin: 50px;
+  padding: 20px;
+  border: solid rgb(77, 178, 224);
+  box-shadow: 0 0 10px rgb(48, 156, 206);
+}
+
+.table-title th {
+  text-align: center;
+  font-size: 16px;
+}
+
+.table-li td {
+  border: 1px solid;
+  border-radius: 6%;
+}
