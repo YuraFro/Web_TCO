@@ -13,18 +13,22 @@ namespace Web_TCO
     {
         public async static Task Input (Bid bid)
         {
+            int i = 13115;
             using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
             {
                 await connection.OpenAsync();
 
-                SqlCommand sqlCommand = new SqlCommand($@"insert into za (Дата, Аудитория, Установили, Время_установки, Забрали, Время_окончания, Оборудование, Фамилия_преподавателя)
-values ('{bid.Date}', {bid.Aud}, {bid.Put}, {bid.Date_Put}, {bid.Take}, {bid.Date_Take}, {bid.Obor}, {bid.Prepod})");
+                SqlCommand sqlCommand = new SqlCommand($@"insert into za (ID, Дата, Аудитория, Установили, Время_установки, Забрали, Время_окончания, Оборудование, Фамилия_преподавателя)
+values ( {++i} ,'{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid.Put.ToString()}', '{bid.Date_Put}', '{bid.Take.ToString()}', '{bid.Date_Take}', '{bid.Obor}', '{bid.Prepod}')", connection);
 
                 int reader = await sqlCommand.ExecuteNonQueryAsync();
             }
         }
         public async static Task<List<Bid>> Out(string date)
         {
+            if (String.IsNullOrEmpty(date))
+                date = DateTime.Now.ToString("yyyy/MM/dd").Replace("/", "");
+
             var bids = new List<Bid>();
             using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
             {

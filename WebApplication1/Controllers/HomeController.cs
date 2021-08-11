@@ -14,9 +14,9 @@ namespace Web_TCO.Controllers
         private string _PostDate { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> Index ()
+        public async Task<IActionResult> Index (string? Date)
         {
-            bids = await DataBase.Out("20210615");
+            bids = await DataBase.Out(Date);
 
             return View(model: bids);
         }
