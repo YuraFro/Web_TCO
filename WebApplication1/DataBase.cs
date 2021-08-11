@@ -13,17 +13,17 @@ namespace Web_TCO
     {
         public async static Task Input (Bid bid)
         {
-            int i = 13115;
             using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
             {
                 await connection.OpenAsync();
 
-                SqlCommand sqlCommand = new SqlCommand($@"insert into za (ID, Дата, Аудитория, Установили, Время_установки, Забрали, Время_окончания, Оборудование, Фамилия_преподавателя)
-values ( {++i} ,'{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid.Put.ToString()}', '{bid.Date_Put}', '{bid.Take.ToString()}', '{bid.Date_Take}', '{bid.Obor}', '{bid.Prepod}')", connection);
+                SqlCommand sqlCommand = new SqlCommand($@"insert into za_reborn (Дата, Аудитория, Установили, Время_установки, Забрали, Время_окончания, Оборудование, Фамилия_преподавателя)
+values ('{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid.Put.ToString()}', '{bid.Date_Put}', '{bid.Take.ToString()}', '{bid.Date_Take}', '{bid.Obor}', '{bid.Prepod}')", connection);
 
                 int reader = await sqlCommand.ExecuteNonQueryAsync();
             }
         }
+
         public async static Task<List<Bid>> Out(string date)
         {
             if (String.IsNullOrEmpty(date))
@@ -34,8 +34,8 @@ values ( {++i} ,'{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}
             {
                 await connection.OpenAsync();
 
-                SqlCommand sqlCommand = new SqlCommand($@"select za.Дата, za.Аудитория, za.Время_установки, za.Время_окончания, za.Установили, za.Забрали, za.Оборудование, za.Фамилия_преподавателя
-from za
+                SqlCommand sqlCommand = new SqlCommand($@"select za_reborn.Дата, za_reborn.Аудитория, za_reborn.Время_установки, za_reborn.Время_окончания, za_reborn.Установили, za_reborn.Забрали, za_reborn.Оборудование, za_reborn.Фамилия_преподавателя
+from za_reborn
 where Дата = '{date}'
 ORDER BY Дата DESC, Время_Установки ASC", connection);
 
@@ -58,8 +58,10 @@ ORDER BY Дата DESC, Время_Установки ASC", connection);
                     }
                 }
 
-                return bids;
+                
             }
+
+            return bids;
         }
     }
 }
