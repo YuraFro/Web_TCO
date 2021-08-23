@@ -22,13 +22,19 @@ namespace Web_TCO.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string PostDate, Bid? bid)
+        public async Task<IActionResult> Index(DateTime PostDate, Bid? bid, int? ID)
         {
-            _PostDate = PostDate;
+            _PostDate = PostDate.ToString();
 
             if (bid.Prepod != null)
             {
                 await DataBase.Input(bid);
+                _PostDate = bid.Date.ToString();
+            }
+
+            if (ID != null)
+            {
+                await DataBase.Delete(ID);
             }
 
             bids = await DataBase.Out(_PostDate);

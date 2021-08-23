@@ -14,20 +14,26 @@ body {
 .content-table{
   text-align: center;
   margin: 50px;
-  padding: 20px;
+  padding: 7px;
   border: solid rgb(77, 178, 224);
   box-shadow: 0 0 10px rgb(48, 156, 206);
+  border-radius: 1%;
 }
 
-
+.table-title th{
+  border: 1px solid;
+}
 
 .table-title th {
   text-align: center;
   font-size: 16px;
 }
 
+
+
 .table-li td {
   border: 1px solid;
   border-radius: 6%;
 }
+
 

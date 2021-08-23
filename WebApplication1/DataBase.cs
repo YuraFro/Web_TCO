@@ -24,6 +24,19 @@ values ('{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid
             }
         }
 
+        public async static Task Delete (int? ID)
+        {
+            using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
+            {
+                await connection.OpenAsync();
+
+                SqlCommand sqlCommand = new SqlCommand($@"delete za_reborn
+where ID = {ID}", connection);
+
+                int reader = await sqlCommand.ExecuteNonQueryAsync();
+            }
+        }
+
         public async static Task<List<Bid>> Out(string date)
         {
             if (String.IsNullOrEmpty(date))
@@ -34,7 +47,7 @@ values ('{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid
             {
                 await connection.OpenAsync();
 
-                SqlCommand sqlCommand = new SqlCommand($@"select za_reborn.Дата, za_reborn.Аудитория, za_reborn.Время_установки, za_reborn.Время_окончания, za_reborn.Установили, za_reborn.Забрали, za_reborn.Оборудование, za_reborn.Фамилия_преподавателя
+                SqlCommand sqlCommand = new SqlCommand($@"select za_reborn.Дата, za_reborn.Аудитория, za_reborn.Время_установки, za_reborn.Время_окончания, za_reborn.Установили, za_reborn.Забрали, za_reborn.Оборудование, za_reborn.Фамилия_преподавателя, za_reborn.ID
 from za_reborn
 where Дата = '{date}'
 ORDER BY Дата DESC, Время_Установки ASC", connection);
@@ -53,7 +66,8 @@ ORDER BY Дата DESC, Время_Установки ASC", connection);
                             Put = (bool)reader.GetValue(4),
                             Take = (bool)reader.GetValue(5),
                             Obor = (String)reader.GetValue(6),
-                            Prepod = (String)reader.GetValue(7)
+                            Prepod = (String)reader.GetValue(7),
+                            Id = (int)reader.GetValue(8)
                         });
                     }
                 }

@@ -18,6 +18,7 @@
         <table class='content-table'>
             <tbody>
                 <tr class='table-title'>
+                    <th>Id</th>
                     <th>Дата</th>
                     <th>Ауд</th>
                     <th>Установленно</th>
@@ -29,43 +30,58 @@
                 </tr>
                 @foreach (var bid in Model)
                 {
-                    <tr class='table-li'><td>@bid.Date</td><td>@bid.Aud</td><td>@bid.Put.ToString()</td><td>@bid.Take.ToString()</td><td>@bid.Date_Put</td><td>@bid.Date_Take</td><td>@bid.Obor</td><td>@bid.Prepod</td></tr>
+                    <tr class='table-li'><td>@bid.Id</td><td>@bid.Date</td><td>@bid.Aud</td><td>@bid.Put.ToString()</td><td>@bid.Take.ToString()</td><td>@bid.Date_Put</td><td>@bid.Date_Take</td><td>@bid.Obor</td><td>@bid.Prepod</td></tr>
                 }
             </tbody>
         </table>
-        <form method="post">
-            <p>Дата</p>
-            <input type="text" name="PostDate" />
-            <input type="submit" value="Отправить" />
-        </form>
-        <form method="post">
-            <input type="hidden" value="@DateTime.Now" name="Date" />
-            <input type="hidden" value="@false" name="Put" />
-            <input type="hidden" value="@false" name="Take" />
-            <table>
-                <tr>
-                    <td>Аудитория</td>
-                    <td><input type="text" name="Aud"/> </td>
-                </tr>
-                <tr>
-                    <td>Время установки</td>
-                    <td><input type="text" name="Date_Put"/> </td>
-                </tr>
-                <tr>
-                    <td>Время окончания</td>
-                    <td><input type="text" name="Date_Take"/> </td>
-                </tr>
-                <tr>
-                    <td>Оборудование</td>
-                    <td><input type="text" name="Obor"/> </td>
-                </tr>
-                <tr>
-                    <td>Преподаватель</td>
-                    <td><input type="text" name="Prepod"/></td>
-                </tr>
-                <tr><td><input type="submit" value="Отправить"/></td></tr>
-            </table>
-        </form>
+        <div>Выбор даты
+            <form method="post">
+                <p>Дата</p>
+                <input type="date" name="PostDate" />
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
+        <div>
+            Заявка
+            <form method="post">
+                <input type="hidden" value="@false" name="Put" />
+                <input type="hidden" value="@false" name="Take" />
+                <table>
+                    <tr>
+                        <td>Аудитория</td>
+                        <td><input type="text" name="Aud" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Время установки</td>
+                        <td><input type="text" name="Date_Put" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Время окончания</td>
+                        <td><input type="text" name="Date_Take" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Оборудование</td>
+                        <td><input type="text" name="Obor" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Преподаватель</td>
+                        <td><input type="text" name="Prepod" /></td>
+                    </tr>
+                    <tr>
+                        <td>Дата</td>
+                        <td><input type="date" name="Date" /></td>
+                    </tr>
+                    <tr><td><input type="submit" value="Отправить" /></td></tr>
+                </table>
+            </form>
+        </div>
+        <div>
+            <form method="post">
+                <p>Выбор id для удаления заявки</p>
+                <input type="text" name="ID" />
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
     </div>
 </body>
 
