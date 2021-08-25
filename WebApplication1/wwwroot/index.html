@@ -1,68 +1,82 @@
 <html lang="ru"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Css\style.css">
-  <link rel="stylesheet" href="Css\normalize.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css\style.css">
+    <link rel="stylesheet" href="Css\normalize.css">
 </head>
 
 <body>
-  <div class="content">
-      <table class="content-table">
-              <tr class="table-title">
-                  <th>Дата</th>
-                  <th>Аудитория</th>
-                  <th>Установленно</th>
-                  <th>Забрали</th>
-                  <th>Установили</th>
-                  <th>Забрали</th>
-                  <th>Оборудование</th>
-                  <th>Преподователь</th>
-              </tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>20</td><td>False</td><td>False</td><td>13:00</td><td>16:13</td><td>wfwe</td><td>werfw</td></tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>18</td><td>False</td><td>False</td><td>13:00</td><td>15:00</td><td>zqwd</td><td>Yura</td></tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>18</td><td>False</td><td>False</td><td>4</td><td>а</td><td>кк</td><td>у</td></tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>1gw</td><td>False</td><td>False</td><td>wrrgw</td><td>1errggre</td><td>efge</td><td>gr</td></tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>уакц</td><td>False</td><td>False</td><td>пац</td><td>упук</td><td>пу</td><td>ук</td></tr>
-                  <tr class="table-li"><td>08.11.2021 0:00:00</td><td>12</td><td>False</td><td>False</td><td>цпц</td><td>пца</td><td>апу</td><td>уепу</td></tr>
-          
-      </table>
-      <form method="post" >
-          <p>Дата</p>
-          <input type="text" name="PostDate">
-          <input type="submit" value="Отправить">
-      </form>
-      <form method="post">
-          <input type="hidden" value="11.08.2021 15:23:44" name="Date">
-          <input type="hidden" name="Put">
-          <input type="hidden" name="Take">
-          <table>
-              <tbody><tr>
-                  <td>Аудитория</td>
-                  <td><input type="text" name="Aud"> </td>
-              </tr>
-              <tr>
-                  <td>Время установки</td>
-                  <td><input type="text" name="Date_Put"> </td>
-              </tr>
-              <tr>
-                  <td>Время окончания</td>
-                  <td><input type="text" name="Date_Take"> </td>
-              </tr>
-              <tr>
-                  <td>Оборудование</td>
-                  <td><input type="text" name="Obor"> </td>
-              </tr>
-              <tr>
-                  <td>Преподаватель</td>
-                  <td><input type="text" name="Prepod"></td>
-              </tr>
-              <tr><td><input type="submit" value="Отправить"></td></tr>
-          </tbody></table>
-      </form>
-  </div>
+    <div class="content">
+        <table class="content-table">
+            <tbody>
+                <tr class="table-title">
+                    <th>Id</th>
+                    <th>Дата</th>
+                    <th>Ауд</th>
+                    <th>Установленно</th>
+                    <th>Забрали</th>
+                    <th>Установили</th>
+                    <th>Забрали</th>
+                    <th>Оборудование</th>
+                    <th>Преподователь</th>
+                </tr>
+                    <tr class="table-li"><td>20</td><td>25.08.2021 0:00:00</td><td>123</td><td>False</td><td>False</td><td>-13</td><td>eew02-</td><td>ee-</td><td>34-</td></tr>
+                    <tr class="table-li"><td>17</td><td>25.08.2021 0:00:00</td><td>123</td><td>False</td><td>False</td><td>QWE</td><td>WEF</td><td>ER</td><td>1SCD</td></tr>
+                    <tr class="table-li"><td>18</td><td>25.08.2021 0:00:00</td><td>123</td><td>False</td><td>False</td><td>QWE</td><td>EQD</td><td>QEQWE</td><td>WED</td></tr>
+                    <tr class="table-li"><td>19</td><td>25.08.2021 0:00:00</td><td>test</td><td>False</td><td>False</td><td>test</td><td>test</td><td>test</td><td>test</td></tr>
+            </tbody>
+        </table>
+        <div class="table_button">Выбор даты
+            <form method="post">
+                <p>Дата</p>
+                <input type="date" name="PostDate">
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+        <div class="table_button">
+            Заявка
+            <form method="post">
+                <input type="hidden" name="Put">
+                <input type="hidden" name="Take">
+                <table>
+                    <tbody><tr>
+                        <td>Аудитория</td>
+                        <td><input type="text" name="Aud"> </td>
+                    </tr>
+                    <tr>
+                        <td>Время установки</td>
+                        <td><input type="text" name="Date_Put"> </td>
+                    </tr>
+                    <tr>
+                        <td>Время окончания</td>
+                        <td><input type="text" name="Date_Take"> </td>
+                    </tr>
+                    <tr>
+                        <td>Оборудование</td>
+                        <td><input type="text" name="Obor"> </td>
+                    </tr>
+                    <tr>
+                        <td>Преподаватель</td>
+                        <td><input type="text" name="Prepod"></td>
+                    </tr>
+                    <tr>
+                        <td>Дата</td>
+                        <td><input type="date" name="Date"></td>
+                    </tr>
+                    <tr><td><input type="submit" value="Отправить"></td></tr>
+                </tbody></table>
+            </form>
+        </div>
+        <div class="table_button">
+            <form method="post">
+                <p>Выбор id для удаления заявки</p>
+                <input type="text" name="ID">
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+    </div>
 
 
 
-</body>
-</html>
+</body></html>
