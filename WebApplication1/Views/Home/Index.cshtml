@@ -29,7 +29,24 @@
                 </tr>
                 @foreach (var bid in Model)
                 {
-                    <tr class='table-li'><td>@bid.Id</td><td>@bid.Date</td><td>@bid.Aud</td><td>@bid.Put.ToString()</td><td>@bid.Take.ToString()</td><td>@bid.Date_Put</td><td>@bid.Date_Take</td><td>@bid.Obor</td><td>@bid.Prepod</td></tr>
+        
+            <tr class='table-li'>
+                <td>@bid.Id</td>
+                <td>@bid.Date</td>
+                <td>@bid.Aud</td>
+                <td>@bid.Put.ToString()</td>
+                <td>@bid.Take.ToString()</td>
+                <td>@bid.Date_Put</td>
+                <td>@bid.Date_Take</td>
+                <td>@bid.Obor</td>
+                <td>@bid.Prepod</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" value="@bid.Id" name="ID" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
                 }
         </table>
         <div>Выбор даты

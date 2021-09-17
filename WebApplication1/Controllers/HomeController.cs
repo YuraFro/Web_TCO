@@ -14,9 +14,9 @@ namespace Web_TCO.Controllers
         private string _PostDate { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> Index (string? Date)
+        public async Task<IActionResult> Index ()
         {
-            bids = await DataBase.Out(Date);
+            bids = await DataBase.Out(DateTime.Now.ToString("yyyy/MM/dd").Replace("/", ""));
 
             return View(model: bids);
         }
@@ -24,8 +24,11 @@ namespace Web_TCO.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(DateTime PostDate, Bid? bid, int? ID)
         {
-            _PostDate = PostDate.ToString();
-
+            if (PostDate.ToString() != "01.01.0001 0:00:00")
+            {
+                _PostDate = PostDate.ToString();
+            }
+            
             if (bid.Prepod != null)
             {
                 await DataBase.Input(bid);

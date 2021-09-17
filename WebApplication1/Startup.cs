@@ -39,7 +39,7 @@ namespace Web_TCO
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{Date?}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
             #region Table_DB
             //// обработка ошибок HTTP
