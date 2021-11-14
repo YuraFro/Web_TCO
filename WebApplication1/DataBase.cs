@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Web_TCO.Models;
+using Web_TCO.Service;
 
 namespace Web_TCO
 {
@@ -13,7 +14,7 @@ namespace Web_TCO
     {
         public async static Task Input (Bid bid)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Config.DefaultConnection))
             {
                 await connection.OpenAsync();
 
@@ -26,7 +27,7 @@ values ('{bid.Date.ToString("yyyy/MM/dd").Replace("/", "")}', '{bid.Aud}', '{bid
 
         public async static Task Delete (int? ID)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Config.DefaultConnection))
             {
                 await connection.OpenAsync();
 
@@ -43,7 +44,7 @@ where ID = {ID}", connection);
                 date = DateTime.Now.ToString("yyyy/MM/dd").Replace("/", "");
 
             var bids = new List<Bid>();
-            using (SqlConnection connection = new SqlConnection(@"Data Source=YRAFRO\SQLEXPRESS;Initial Catalog=zayavkiSQL;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Config.DefaultConnection))
             {
                 await connection.OpenAsync();
 
