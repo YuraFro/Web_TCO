@@ -60,6 +60,19 @@ namespace Web_TCO
                 options.SlidingExpiration = true;
             });
 
+            //настраиваем политику авторизации для Admin area
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
+            });
+
+            //добавляем сервисы для контролероов и представлений (MVC)
+            services.AddControllersWithViews(x =>
+            {
+                x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
+            });
+
+
             services.AddMvc();
             services.AddControllersWithViews();
 
@@ -82,6 +95,9 @@ namespace Web_TCO
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
+                endpoints.MapControllerRoute(
+                    name: "admin",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
             #region Table_DB
             //// обработка ошибок HTTP

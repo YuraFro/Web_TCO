@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Bid>
+@{ 
+    Layout = null;
+}
+
+<html lang='ru'>
+
+<head>
+    @await Html.PartialAsync("MetatagPartial")
+    @await Html.PartialAsync("CssPartial")
+</head>
+
+<body>
+    <div class='content'>
+        <table class='content-table'>
+                <tr class='table-title'>
+                    <th>Id</th>
+                    <th>Дата</th>
+                    <th>Ауд</th>
+                    <th>Установленно</th>
+                    <th>Забрали</th>
+                    <th>Установили</th>
+                    <th>Забрали</th>
+                    <th>Оборудование</th>
+                    <th>Преподователь</th>
+                </tr>
+                @foreach (var bid in Model)
+                {
+        
+            <tr class='table-li'>
+                <td>@bid.Id</td>
+                <td>@bid.Date</td>
+                <td>@bid.Aud</td>
+                <td>@bid.Put.ToString()</td>
+                <td>@bid.Take.ToString()</td>
+                <td>@bid.Date_Put</td>
+                <td>@bid.Date_Take</td>
+                <td>@bid.Obor</td>
+                <td>@bid.Prepod</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" value="@bid.Id" name="ID" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+                }
+        </table>
+        <div>Выбор даты
+            <form method="post">
+                <p>Дата</p>
+                <input type="date" name="PostDate" />
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
+        <div>
+            Заявка
+            <form method="post">
+                <input type="hidden" value="@false" name="Put" />
+                <input type="hidden" value="@false" name="Take" />
+                <table>
+                    <tr>
+                        <td>Аудитория</td>
+                        <td><input type="text" name="Aud" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Время установки</td>
+                        <td><input type="text" name="Date_Put" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Время окончания</td>
+                        <td><input type="text" name="Date_Take" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Оборудование</td>
+                        <td><input type="text" name="Obor" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Преподаватель</td>
+                        <td><input type="text" name="Prepod" /></td>
+                    </tr>
+                    <tr>
+                        <td>Дата</td>
+                        <td><input type="date" name="Date" /></td>
+                    </tr>
+                    <tr><td><input type="submit" value="Отправить" /></td></tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
