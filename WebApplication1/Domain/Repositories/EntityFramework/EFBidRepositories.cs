@@ -28,6 +28,10 @@ namespace Web_TCO.Domain.Repositories.EntityFramework
         {
             return _appDbContext.Bids.FirstOrDefault(x => x.Id == id);
         }
+        public IList<Bid> GetBids(DateTime date)
+        {
+            return (IList<Bid>)_appDbContext.Bids.ToList().Where(x => x.Date == date);
+        }
 
         public IList<Bid> GetBids()
         {

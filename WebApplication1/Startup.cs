@@ -52,8 +52,9 @@ namespace Web_TCO
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             //настраиваем authentication cookie
-            services.ConfigureApplicationCookie(options => {
-                options.Cookie.Name = "Web_TCO";
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "myCompanyAuth";
                 options.Cookie.HttpOnly = true;
                 options.LoginPath = "/account/login";
                 options.AccessDeniedPath = "/account/accessdenied";
@@ -81,23 +82,23 @@ namespace Web_TCO
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure ( IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger )
         {
+            //подключаем поддержку статичных файлов в приложении (css, js и т.д.)
             app.UseStaticFiles();
+
+            //подключаем систему маршрутизации
             app.UseRouting();
 
             //подключаем аутентификацию и авторизацию
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
-                endpoints.MapControllerRoute(
-                    name: "admin",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
             #region Table_DB
             //// обработка ошибок HTTP

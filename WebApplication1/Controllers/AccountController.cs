@@ -15,24 +15,21 @@ namespace Web_TCO.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
-
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signinMgr)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            userManager = userMgr;
+            signInManager = signinMgr;
         }
 
         [AllowAnonymous]
-        public IActionResult Login (string returnUrl)
+        public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
-
             return View(new LoginViewModel());
         }
-
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model, string retunrUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -43,9 +40,8 @@ namespace Web_TCO.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return Redirect(retunrUrl ?? "/");
+                        return Redirect(returnUrl ?? "/");
                     }
-
                 }
                 ModelState.AddModelError(nameof(LoginViewModel.Username), "Неверный логин или пароль");
             }
@@ -53,11 +49,10 @@ namespace Web_TCO.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Logout ()
+        public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
     }
 }
