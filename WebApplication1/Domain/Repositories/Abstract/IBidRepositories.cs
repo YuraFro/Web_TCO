@@ -10,6 +10,7 @@ namespace Web_TCO.Domain.Repositories.Abstract
     public interface IBidRepositories
     {
         IList<Bid> GetBids();
+        IEnumerable<Bid> GetBids(DateTime dateTime);
         Bid GetBid(int id);
         void SaveBid(Bid bid);
         void DeleteBid(int id);

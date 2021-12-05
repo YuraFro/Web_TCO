@@ -10,12 +10,12 @@ namespace Web_TCO.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly EFBidRepositories eFBid;
+        private readonly IBidRepositories eFBid;
         private DateTime _PostDate { get; set; }
 
         public HomeController(IBidRepositories eFBid)
         {
-            this.eFBid = (EFBidRepositories)eFBid;
+            this.eFBid = eFBid;
         }
 
         [HttpGet]
